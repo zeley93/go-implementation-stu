@@ -1,16 +1,16 @@
 package models
 
 type Ledger struct {
-	blocks [] Block
+	blocks []Block
 }
 
-func newLedger() Ledger{
+func newLedger() Ledger {
 	return Ledger{[]Block{createGenesisBlock()}}
 }
 
-func isValid(prevBlock Block, newBlock Block) bool{
+func isValid(prevBlock Block, newBlock Block) bool {
 
-	if prevBlock.index + 1 != newBlock.index {
+	if prevBlock.index+1 != newBlock.index {
 		return false
 	}
 	if prevBlock.blockHash != newBlock.previousHash {
@@ -22,14 +22,14 @@ func isValid(prevBlock Block, newBlock Block) bool{
 	return true
 }
 
-func (ledger *Ledger)addBlock(merkleRoot string, transactions[] Transaction) {
+func (ledger *Ledger) addBlock(merkleRoot string, transactions []Transaction) {
 	prevBlock := ledger.getprevBlock()
 	newBlock := NewBlock(prevBlock, merkleRoot, transactions)
-	if isValid(prevBlock, newBlock){
+	if isValid(prevBlock, newBlock) {
 		ledger.blocks = append(ledger.blocks, newBlock)
 	}
 }
 
-func (ledger *Ledger)getprevBlock() Block{
+func (ledger *Ledger) getprevBlock() Block {
 	return ledger.blocks[len(ledger.blocks)]
 }
