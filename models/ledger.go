@@ -22,6 +22,16 @@ func isValid(prevBlock Block, newBlock Block) bool {
 	return true
 }
 
+func getLongestChain(ledger1 *Ledger, ledger2 *Ledger) {
+	if len(ledger1) > len(ledger2) {
+		return ledger1
+	} else if len(ledger1) == len(ledger2) {
+		fmt.Println("mork work to do")
+	} else {
+		return ledger2
+	}
+}
+
 func (ledger *Ledger) addBlock(merkleRoot string, transactions []Transaction) {
 	prevBlock := ledger.getprevBlock()
 	newBlock := NewBlock(prevBlock, merkleRoot, transactions)
