@@ -3,5 +3,5 @@ type Block struct {
 	previous_hash string
 	merkle_root string
 	nb_transactions int
-	transactions [] Transaction
+	transactions[] Transaction
 }
